@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# Apres cette ligne les commandes seront executees systematiquement
+/usr/bin/python /usr/bin/PiCatchU.py >> /var/log/PiCatchU.log
+# ...
+
+# Apres cette ligne les commandes executees en fonction du parametre passe en ligne de commande
+
+case "$1" in
+
+    start)
+        # Commandes executees avec le parametre start (celui lors du boot)
+
+        ;;
+
+    stop)
+
+        # Commandes executees avec le parametre stop (celui lors de l'arret du systeme)
+
+        ;;
+
+    reload|restart)
+
+        $0 stop
+
+        $0 start
+
+        ;;
+
+    *)
+
+        echo "Usage: $0 start|stop|restart|reload"
+
+        exit 1
+
+esac
+
+exit 0
